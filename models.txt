@@ -1,0 +1,28 @@
+teacher
+- id
+- email, password
+- quizId
+
+student
+- id
+- email, password
+- attemp_quiz = [student_quiz]
+
+student_quiz
+- quiz = id
+- studentId
+- correct_question = [question.id, question.id....]
+- wrong_question = [question.id, question.id....]
+
+quiz
+- id
+- teacherid
+- questions = [question, question, question...]
+
+question
+- id
+- question = ""
+- options = ["", "", "", ""]
+- answer = [0 - 3]
+
+c5QHWmJX9VTAGYRl
