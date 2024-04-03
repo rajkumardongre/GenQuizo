@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                 </div>
                 <div class="topic-control">
                     <p class="total-questions">Total: ${totalCount}</p>
-                    <button class="check-button">Check</button>
+                    <a href="/student/${quizId}/${topic}"><button class="check-button">Check</button></a>
                 </div>
             `;
 

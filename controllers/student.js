@@ -133,15 +133,6 @@ const getQuizData = async (req, res) => {
                 path: 'quizId',
                 populate: { path: 'questions' }
             })
-            // .populate({
-            //     path: 'topics.correct.questionId',
-            //     model: 'Question'
-            // })
-            // .populate({
-            //     path: 'topics.wrong.questionId',
-            //     model: 'Question'
-            // })
-            // .exec();
 
         if (!studentQuiz) {
             return res.status(404).json({ success: false, error: 'Student quiz data not found' });
@@ -154,6 +145,95 @@ const getQuizData = async (req, res) => {
     }
 };
 
+function getUserOption(topics, topic, questionId) {
+    // Check if the topic exists in the topics object
+    // console.log(topics.topic)
+    const topicsMap = new Map(topics)
+    if (topicsMap.has(topic)) {
+        const topicObj = topicsMap.get(topic);
+        console.log(topicObj, questionId)
+        // Check if the topic object has the question ID in correct or wrong array
+        if (topicObj.correct.some(item => item.questionId.toString() === questionId.toString())) {
+            console.log("Correct match")
+            // Question ID found in the correct array, return the user option
+            return topicObj.correct.find(item => item.questionId.toString() === questionId.toString()).userOption;
+        } else if (topicObj.wrong.some(item => item.questionId.toString() === questionId.toString())) {
+            console.log("Wrong match")
+            // Question ID found in the wrong array, return the user option
+            return topicObj.wrong.find(item => item.questionId.toString() === questionId.toString()).userOption;
+        }
+    }
+    
+    // Question ID not found in any correct or wrong array, return null
+    return null;
+}
+
+const getTopicData = async(req, res) => {
+    const quizId = req.params.quizId;
+    const topic = req.params.topic;
+    const studentId = req.studentId;
+
+    try {
+        // Find the StudentQuiz entry based on quizId and studentId, and populate all fields
+        const studentQuiz = await StudentQuiz.findOne({ quizId, studentId })
+            .populate({
+                path: 'quizId',
+                populate: { path: 'questions' }
+            })
+
+        if (!studentQuiz) {
+            return res.status(404).json({ success: false, error: 'Student quiz data not found' });
+        }
+        let questions = studentQuiz.quizId.questions.filter(question => {
+            return question.topic === topic
+        })
+        questions = questions.map(question =>{
+            const userOption = getUserOption(studentQuiz.topics, topic, question._id)
+            return {question, userOption};
+        })
+        const data = {
+            questions,
+            resources: studentQuiz.quizId.generated_topics_resources.get(topic),
+        }
+        res.status(200).json({ success: true, data});
+    } catch (error) {
+        console.error('Error getting student quiz data:', error);
+        res.status(500).json({ success: false, error: 'Server error' });
+    }
+}
+
+const getQuestionData = async(req, res) => {
+    const quizId = req.params.quizId;
+    const topic = req.params.topic;
+    const questionId = req.params.questionId;
+    const studentId = req.studentId;
+
+    try {
+        // Find the StudentQuiz entry based on quizId and studentId, and populate all fields
+        const studentQuiz = await StudentQuiz.findOne({ quizId, studentId })
+            .populate({
+                path: 'quizId',
+                populate: { path: 'questions' }
+            })
+
+        if (!studentQuiz) {
+            return res.status(404).json({ success: false, error: 'Student quiz data not found' });
+        }
+        let reqestedQuestion = studentQuiz.quizId.questions.filter(question => {
+            return question._id.toString() === questionId.toString()
+        })[0];
+        
+        const userOption = getUserOption(studentQuiz.topics, topic, questionId)
+        const data = {
+            questions: reqestedQuestion,
+            userOption,
+        }
+        res.status(200).json({ success: true, data});
+    } catch (error) {
+        console.error('Error getting student quiz data:', error);
+        res.status(500).json({ success: false, error: 'Server error' });
+    }
+}
 
 const submitQuiz = async (req, res) => {
   try {
@@ -201,11 +281,7 @@ const submitQuiz = async (req, res) => {
         }
       }
     }
-    console.log({
-      quizId,
-      studentId,
-      topics,
-    });
+   
     // Create a new StudentQuiz entry
     const studentQuiz = new StudentQuiz({
       quizId,
@@ -246,4 +322,6 @@ module.exports = {
   attemptQuiz,
   submitQuiz,
   getQuizData,
+  getTopicData,
+  getQuestionData,
 };
