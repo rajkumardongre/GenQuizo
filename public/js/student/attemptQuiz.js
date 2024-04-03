@@ -52,8 +52,7 @@ async function fetchAndDisplayQuiz() {
         });
 
         questionsContainer.innerHTML = html;
-
-        showModal("Submitting, Don't leave page.");
+        hideModal();
 
         // Add event listener to submit button
         // const submitButton = document.querySelector('.submit-btn');
@@ -61,7 +60,8 @@ async function fetchAndDisplayQuiz() {
         // submitButton.addEventListener('click', async (event) => {
         quizForm.addEventListener('submit', async (event) => {
             event.preventDefault();
-            showModal()
+            showModal("Submitting, Don't leave page.");
+
             const userResponses = [];
 
             // Collect user responses
@@ -94,7 +94,6 @@ async function fetchAndDisplayQuiz() {
             // You may want to redirect or show a success message
             console.log(userResponses)
             console.log(res)
-            hideModal();
             showModal("Submitted Successfully!")
             window.location.replace("/student")
         });

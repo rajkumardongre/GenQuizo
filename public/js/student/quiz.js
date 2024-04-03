@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         // const quizId = '660c842ea5c8daa7ef6dca1b'; // Replace this with the actual quizId
         const splitUrl = window.location.href.split("/"); // Replace this with the actual quizId
         const quizId = splitUrl[splitUrl.length-1].split("#")[0]; // Replace this with the actual quizId
+        showModal("Loading...", "Back", `${window.location.origin}/student`)
         const response = await fetch(`/api/student/${quizId}`);
         const data = await response.json();
 
@@ -10,11 +11,11 @@ document.addEventListener('DOMContentLoaded', async function () {
             throw new Error(data.error || 'Failed to fetch quiz data');
         }
 
-        const quizTitle = data.data.title;
+        const quizTitle = data.data.quizId.title;
         const topics = data.data.topics;
 
         // Set quiz title
-        document.querySelector('.page-title').textContent = quizTitle;
+        document.querySelector('.page-title').innerHTML = quizTitle;
 
         // Get topic cards container
         const topicCardsContainer = document.querySelector('.topic-cards');
@@ -43,8 +44,13 @@ document.addEventListener('DOMContentLoaded', async function () {
             // Append topic card to container
             topicCardsContainer.appendChild(topicCard);
         }
+        hideModal();
     } catch (error) {
         showModal('Failed to load quiz data. Please try again later.', 'OK', window.location.href);
         console.error('Error:', error);
     }
 });
+
+document.getElementById("back-btn").addEventListener("click", () => {
+    window.location.replace("/student")
+})

@@ -1,11 +1,17 @@
+const splitUrl = window.location.href.split('/');
+const n = splitUrl.length
+let space = 0;
+if(splitUrl[n-1] == ""){
+    space = 1
+}
+const questionId = splitUrl[n-1-space];
+const topic = splitUrl[n-2-space];
+const quizId = splitUrl[n-3-space];
+
+
 // Fetch question data from the API
 async function fetchQuestionData() {
 
-    const splitUrl = window.location.href.split('/');
-    const n = splitUrl.length
-    const questionId = splitUrl[n-1];
-    const topic = splitUrl[n-2];
-    const quizId = splitUrl[n-3];
 
     const response = await fetch(`/api/student/${quizId}/${topic}/${questionId}`);
     const data = await response.json();
@@ -36,3 +42,8 @@ async function populateQuestionData() {
 
 // Call the function to populate question data
 populateQuestionData();
+
+
+document.getElementById("back-btn").addEventListener("click", () => {
+    window.location.replace(`/student/${quizId}/${topic}`)
+})

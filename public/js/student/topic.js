@@ -1,9 +1,16 @@
+const splitUrl = window.location.href.split('/');
+const n = splitUrl.length
+let space = 0;
+if(splitUrl[n-1] == ""){
+    space = 1
+}
+const topic = decodeURI(splitUrl[n-1-space]);
+const quizId = decodeURI(splitUrl[n-2-space]);
+
+
 // Fetch data from the API and populate the question card and information
 async function fetchAndPopulateQuestion() {
-    const splitUrl = window.location.href.split('/');
-    const n = splitUrl.length
-    const topic = splitUrl[n-1];
-    const quizId = splitUrl[n-2];
+    showModal("Loading...")
 
     document.getElementById("topic-title").innerText = topic;
 
@@ -12,7 +19,8 @@ async function fetchAndPopulateQuestion() {
         const data = await response.json();
 
         if (!data.success || !data.data || !data.data.questions || data.data.questions.length === 0) {
-            throw new Error('Failed to fetch questions from the API.');
+            console.log(data);
+            throw new Error(data.error);
         }
 
         const questions = data.data.questions;
@@ -78,7 +86,9 @@ async function fetchAndPopulateQuestion() {
         `;
         
         rightPanel.appendChild(questionInfo);
+        hideModal();
     } catch (error) {
+        showModal(error.message, "Back", )
         console.error('Error fetching and populating question:', error.message);
         // Display error message or handle error as required
     }
@@ -86,3 +96,8 @@ async function fetchAndPopulateQuestion() {
 
 // Call the function to fetch and populate the question card and information
 fetchAndPopulateQuestion();
+
+
+document.getElementById("back-btn").addEventListener("click", () => {
+    window.location.replace(`/student/${quizId}`)
+})
