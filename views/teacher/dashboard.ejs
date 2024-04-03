@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Dashboard - GenQuizo</title>
+    <link rel="stylesheet" href="/css/teacher/dashboard.css">
+    <link rel="stylesheet" href="/css/modal.css">
+
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <h1 class="logo"><a href="/">GenQuizo</a></h1>
+            <ul class="nav-links">
+                <li><a href="/teacher">My Quiz</a></li>
+                <!-- <li><a href="/teacher/students">Students</a></li> -->
+            </ul>
+            <div>
+                <a href="/teacher/add-quiz" class="btn add-quiz-btn">Add Quiz</a>
+                <a id="logout-btn" class="btn logout-btn">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h2 style="font-size: 40px;">Hello <span id="user-email"></span>,</h2>
+        <h2>My Quizzes</h2>
+        <!-- Quiz Cards will be dynamically generated here -->
+        <div class="quiz-cards" id="quiz-cards">
+            <!-- Sample Quiz Card -->
+            <!-- <div class="quiz-card">
+                <h3>Quiz Title</h3>
+                <p class="timestamp">Created on: Jan 1, 2023</p>
+                <p class="attempts">Attempts: 10</p>
+                <button class="btn view-btn">View</button>
+            </div> -->
+            <!-- Sample Quiz card end -->
+        </div>
+    </div>
+
+    <div id="modal-background" class="modal-background">
+        <div id="modal" class="modal">
+            <div class="modal-content">
+                <p id="modal-message"></p>
+                <button id="modal-button"></button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/modal.js"></script>
+    <script src="/js/teacher/dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose Your Role</title>
+    <link rel="stylesheet" href="/css/auth.css">
+    <link rel="stylesheet" href="/css/modal.css">
+
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <h1 class="logo"><a href="/">GenQuizo</a></h1>
+            <ul class="nav-links">
+                <li><a href="/#services">Services</a></li>
+                <li><a href="/#about">About</a></li>
+                <li><a href="/#contact">Contact</a></li>
+                <li><a href="/auth">Try Now!</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <h1 style="padding-top: 3rem;">Choose Your Identity</h1>
+        <div class="card-container">
+            <div class="card teacher">
+                <h2>Teacher</h2>
+                <p>Click here if you are a teacher</p>
+                <a href="/teacher/register" class="btn">I am a Teacher</a>
+            </div>
+            <div class="card student">
+                <h2>Student</h2>
+                <p>Click here if you are a student</p>
+                <a href="/student/register" class="btn">I am a Student</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-background" class="modal-background">
+        <div id="modal" class="modal">
+            <div class="modal-content">
+                <p id="modal-message"></p>
+                <button id="modal-button"></button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/modal.js"></script>
+</body>
+</html>

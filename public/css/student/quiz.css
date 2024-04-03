@@ -1,0 +1,96 @@
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #171717;
+    color: #ECECEC;
+}
+
+.container {
+    width: 80%;
+    margin: 50px auto;
+}
+
+.page-title {
+    text-align: center;
+}
+
+.topic-cards {
+    /* display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px; */
+    display: flex;
+    flex-direction: column;
+}
+
+.topic-card {
+    background-color: #212121;
+    padding: 10px 20px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+
+.topic-title {
+    font-size: 20px;
+    background-color: black;
+    margin: 0;
+    padding: 0.5rem;
+    border-radius: 8px;
+    height: 100%;
+    /* margin-bottom: 10px; */
+}
+
+.topic-info {
+    /* margin-bottom: 15px; */
+    display: flex;
+    align-items: center;
+}
+
+
+.correct-questions,
+.wrong-questions{
+    padding: 0.5rem;
+    border-radius: 8px;
+    background-color: black;
+}
+
+
+.correct-questions,
+.wrong-questions,
+.total-questions{
+    margin: 0;
+}
+
+.wrong-questions{
+    margin-left: 1rem;
+}
+
+.check-button {
+    background-color: #10A37F;
+    color: #ECECEC;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.check-button:hover {
+    background-color: #0A7257;
+}
+
+.topic-control{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: black;
+    padding: 0.5rem;
+    border-radius: 8px;
+
+}

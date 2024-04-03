@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Page</title>
+    <link rel="stylesheet" href="/css/student/nav.css">
+    <link rel="stylesheet" href="/css/student/quiz.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="navbar-container">
+            <h1 class="logo"><a href="/">GenQuizo</a></h1>
+            <ul class="nav-links">
+                <!-- <li><a href="/student">Dashboard</a></li> -->
+            </ul>
+            <div>
+                <a id="logout-btn" class="btn logout-btn">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1 class="page-title">Quiz Title</h1>
+        
+        <!-- List of topic cards -->
+        <div class="topic-cards">
+            <!-- Sample topic card -->
+            <!-- <div class="topic-card">
+                <h2 class="topic-title">Topic 1</h2>
+                <div class="topic-info">
+                    <p class="correct-questions">✔️ 5</p>
+                    <p class="wrong-questions">❌ 3</p>
+                </div>
+                <div class="topic-control">
+                    <p class="total-questions">Total: 8</p>
+                    <button class="check-button">Check</button>
+                </div>
+            </div> -->
+
+
+            <!-- Add more topic cards here -->
+        </div>
+    </div>
+
+    <div id="modal-background" class="modal-background">
+        <div id="modal" class="modal">
+            <div class="modal-content">
+                <p id="modal-message"></p>
+                <button id="modal-button"></button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/modal.js"></script>
+    <script src="/js/student/quiz.js"></script>
+</body>
+</html>
