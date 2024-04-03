@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     quizForm.addEventListener('submit', async function(event) {
         event.preventDefault(); // Prevent the form from submitting
-
+        showModal("Submitting, Don't leave page.");
         // Reset the quizQuestions array
         quizQuestions = [];
 
@@ -108,10 +108,13 @@ document.addEventListener('DOMContentLoaded', function () {
             if (!response.ok || !data.success) {
                 throw new Error(data.error);
             }
+
+            showModal("Quiz added Successfully")
     
             // Handle successful response
             window.location.replace("/teacher")
         } catch (error) {
+            showModal(error.message)
             console.error('There was a problem adding quiz questions:', error);
             // Handle error
         }

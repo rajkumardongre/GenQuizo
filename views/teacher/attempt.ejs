@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teacher Dashboard - GenQuizo</title>
-    <link rel="stylesheet" href="/css/teacher/dashboard.css">
+    <title>Attempt Page</title>
+    <link rel="stylesheet" href="/css/teacher/attempt.css">
     <link rel="stylesheet" href="/css/modal.css">
-
+    <link rel="stylesheet" href="/css/teacher/nav.css">
 </head>
 <body>
     <nav class="navbar">
@@ -22,20 +22,24 @@
             </div>
         </div>
     </nav>
-
     <div class="container">
-        <h2 style="font-size: 40px;">Hello <span id="user-email"></span>,</h2>
-        <h2>My Quizzes</h2>
-        <!-- Quiz Cards will be dynamically generated here -->
-        <div class="quiz-cards" id="quiz-cards">
-            <!-- Sample Quiz Card -->
-            <!-- <div class="quiz-card">
-                <h3>Quiz Title</h3>
-                <p class="timestamp">Created on: Jan 1, 2023</p>
-                <p class="attempts">Attempts: 10</p>
-                <button class="btn view-btn">View</button>
+        <div class="title-container">
+            <h1 class="page-title" id="page-title"></h1>
+            <button class="btn" id="back-btn">Back</button>
+        </div>
+        
+        <!-- List of student cards -->
+        <div class="student-cards">
+            <!-- Sample student card -->
+            <!-- <div class="student-card">
+                <h2 class="email">example@student.com</h2>
+                <div class="marks-container">
+                    <p class="correct-marks">✔️ 4</p>
+                    <p class="wrong-marks">❌ 2</p>
+                </div>
             </div> -->
-            <!-- Sample Quiz card end -->
+
+            <!-- Add more student cards here -->
         </div>
     </div>
 
@@ -49,6 +53,6 @@
     </div>
 
     <script src="/js/modal.js"></script>
-    <script src="/js/teacher/dashboard.js"></script>
+    <script src="/js/teacher/attempt.js"></script>
 </body>
 </html>

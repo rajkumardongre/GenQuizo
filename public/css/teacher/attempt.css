@@ -1,0 +1,83 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #171717;
+    color: #ECECEC;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.marks-container{
+    display: flex;
+}
+
+.correct-marks, .wrong-marks{
+    background-color: black;
+    padding: 5px;
+    padding-inline: 10px;
+    border-radius: 5px;
+    margin: 0;
+}
+
+.wrong-marks{
+    margin-left: 10px;
+}
+
+.page-title {
+    color: #10A37F;
+    text-align: center;
+}
+
+.student-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.student-card {
+    background-color: #212121;
+    padding: 10px;
+    padding-inline: 20px;
+    
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.email {
+    font-size: 20px;
+    /* margin-bottom: 10px; */
+    margin: 0;
+}
+
+.total-marks {
+    font-size: 16px;
+}
+
+.title-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.btn {
+    background-color: #10A37F;
+    color: #ECECEC;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    height: fit-content;
+}
+
+.btn:hover {
+    background-color: #0D825F;
+}

@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         <h3>${quiz.title}</h3>
                         <p class="timestamp">Created on: ${new Date(quiz.createdAt).toDateString()}</p>
                         <p class="attempts">Number of attempts: ${quiz.attempts.length}</p>
-                        <button class="btn view-btn">View</button>
+                        <a href="/teacher/${quiz._id}/attempt"><button class="btn view-btn">View</button></a>
                     </div>
                 `;
                 quizCardsContainer.innerHTML += quizCard;

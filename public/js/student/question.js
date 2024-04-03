@@ -35,9 +35,54 @@ async function populateQuestionData() {
     const answerIndex = questionData.data.questions.answer - 1; // Answer index is 0-based
     actualAnswerElement.textContent = questionData.data.questions.options[answerIndex];
 
+    const parsedResources = JSON.parse(questionData.data.questions.generated_resources)
+    console.log(parsedResources)
     // Update resource section
+    const jsonData = JSON.parse(questionData.data.questions.generated_resources);
     const resourceElement = document.querySelector('.resource');
-    resourceElement.textContent = questionData.data.questions.generated_resources;
+
+    // Clear existing content
+    resourceElement.innerHTML = '';
+
+    // Create and append solution
+    const solutionHeading = document.createElement('h3');
+    solutionHeading.textContent = "Solution:";
+    resourceElement.appendChild(solutionHeading);
+
+    const solutionParagraph = document.createElement('p');
+    solutionParagraph.textContent = jsonData.solution;
+    resourceElement.appendChild(solutionParagraph);
+
+    // Create and append evaluations
+    const evalHeading = document.createElement('h3');
+    evalHeading.textContent = "Evaluations:";
+    resourceElement.appendChild(evalHeading);
+
+    const evalList = document.createElement('ul');
+    for (const [key, value] of Object.entries(jsonData.eval)) {
+        const evalItem = document.createElement('li');
+        evalItem.textContent = `${key}: ${value}`;
+        evalList.appendChild(evalItem);
+    }
+    resourceElement.appendChild(evalList);
+
+    // Create and append resources
+    const resourcesHeading = document.createElement('h3');
+    resourcesHeading.textContent = "Resources:";
+    resourceElement.appendChild(resourcesHeading);
+
+    const resourcesList = document.createElement('ul');
+    jsonData.resources.forEach(resource => {
+        const resourceItem = document.createElement('li');
+        const resourceLink = document.createElement('a');
+        resourceLink.href = resource.link;
+        resourceLink.textContent = resource.desc;
+        resourceItem.appendChild(resourceLink);
+        resourcesList.appendChild(resourceItem);
+    });
+    resourceElement.appendChild(resourcesList);
+
+    
 }
 
 // Call the function to populate question data
@@ -46,4 +91,9 @@ populateQuestionData();
 
 document.getElementById("back-btn").addEventListener("click", () => {
     window.location.replace(`/student/${quizId}/${topic}`)
+})
+
+document.getElementById("logout-btn").addEventListener("click", async (e) => {
+    await fetch('/api/student/logout');
+    window.location.replace("/auth/")
 })

@@ -54,3 +54,9 @@ document.addEventListener('DOMContentLoaded', async function () {
 document.getElementById("back-btn").addEventListener("click", () => {
     window.location.replace("/student")
 })
+
+
+document.getElementById("logout-btn").addEventListener("click", async (e) => {
+    await fetch('/api/student/logout');
+    window.location.replace("/auth/")
+})

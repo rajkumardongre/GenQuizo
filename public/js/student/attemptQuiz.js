@@ -106,3 +106,8 @@ async function fetchAndDisplayQuiz() {
 }
 
 window.addEventListener('DOMContentLoaded', fetchAndDisplayQuiz);
+
+document.getElementById("logout-btn").addEventListener("click", async (e) => {
+    await fetch('/api/student/logout');
+    window.location.replace("/auth/")
+})
